@@ -1,4 +1,3 @@
-
 public class Furniture {
 
 	private PApplet processing;
@@ -9,10 +8,10 @@ public class Furniture {
 	private String type;
 	
 	// initializes the fields of a new bed object positioned in the center of the display
-	public Furniture(PApplet processing) {
+	public Furniture(String type, PApplet processing) {
+		this.type = type;
 		this.processing = processing;
-		type = new String();
-		image = processing.loadImage("images/" + type + "png");
+		image = processing.loadImage("images/" + type + ".png");
 		position = new float[2];
 		position[0] = processing.width/2;
 		position[1] = processing.height/2;
@@ -29,7 +28,7 @@ public class Furniture {
 			position[1] = processing.mouseY;
 			processing.image(image, position[0], position[1], rotations*PApplet.PI/2);
 		} else {
-			processing.image(image, position[0], position[1]);
+			processing.image(image, position[0], position[1], rotations*PApplet.PI/2);
 		}
 	}
 	
@@ -47,20 +46,19 @@ public class Furniture {
 	// helper method to determine whether the mouse is currently over this bed
 	public boolean isMouseOver() {
 		if (rotations % 2 == 0) {
-			if (processing.mouseX > position[0] - processing.width/2 && 
-					processing.mouseX < position[0] + processing.width/2 &&
-					processing.mouseY > position[1] - processing.height/2 &&
-					processing.mouseY < position[1] + processing.height/2) {
+			if (processing.mouseX > position[0] - image.width/2 && 
+					processing.mouseX < position[0] + image.width/2 &&
+					processing.mouseY > position[1] - image.height/2 &&
+					processing.mouseY < position[1] + image.height/2) {
 				return true;
 			}
-		} else {
-			if (processing.mouseX > position[0] - processing.height/2 && 
-					processing.mouseX < position[0] + processing.height/2 &&
-					processing.mouseY > position[1] - processing.width/2 &&
-					processing.mouseY < position[1] + processing.width/2) {
+		} else if (processing.mouseX > position[0] - image.height/2 && 
+					processing.mouseX < position[0] + image.height/2 &&
+					processing.mouseY > position[1] - image.width/2 &&
+					processing.mouseY < position[1] + image.width/2) {
 				return true;
-			}
 		}
+		
 		return false;	
 	}
 	
