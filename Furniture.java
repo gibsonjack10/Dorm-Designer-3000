@@ -28,6 +28,8 @@ public class Furniture {
 			position[0] = processing.mouseX;
 			position[1] = processing.mouseY;
 			processing.image(image, position[0], position[1], rotations*PApplet.PI/2);
+		} else {
+			processing.image(image, position[0], position[1]);
 		}
 	}
 	
