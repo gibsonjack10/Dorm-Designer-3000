@@ -1,4 +1,3 @@
-
 public class CreateBedButton {
 	private static final int WIDTH = 96;
 	private static final int HEIGHT = 32;
@@ -37,8 +36,13 @@ public class CreateBedButton {
 	
 	
 	public Furniture mouseDown() { 
-		if (isMouseOver() == true) {
-			//create new bed
+		if (isMouseOver()) {
+			Furniture bed = new Furniture("bed", processing);
+			
+			return bed;
+		}
+		else {
+			return null;
 		}
 	} // After step 10, this method will instead return Furniture	
 	
@@ -48,10 +52,10 @@ public class CreateBedButton {
 	
 	
 	public boolean isMouseOver() {
-		if (processing.mouseX > position[0] - processing.width/2 && 
-				processing.mouseX < position[0] + processing.width/2 &&
-				processing.mouseY > position[1] - processing.height/2 &&
-				processing.mouseY < position[1] + processing.height/2) {
+		if (processing.mouseX > position[0] - WIDTH/2 && 
+				processing.mouseX < position[0] + WIDTH/2 &&
+				processing.mouseY > position[1] - HEIGHT/2 &&
+				processing.mouseY < position[1] + HEIGHT/2) {
 			return true;
 		}
 		return false;	
